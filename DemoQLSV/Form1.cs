@@ -16,7 +16,7 @@ namespace DemoQLSV
 {
     public partial class Form1 : Form
     {
-        string path = "E:\\Pictures\\New folder (3)";
+        string path = "..\\..\\Hinh";
         XL_SINHVIEN Bang_SINHVIEN;
         XL_LOP Bang_LOP;
         BindingManagerBase DSSV;
@@ -52,7 +52,6 @@ namespace DemoQLSV
             txtHoten.DataBindings.Add("text", Bang_SINHVIEN, "HoTen", true);
             dateTimePicker1.DataBindings.Add("text", Bang_SINHVIEN, "NgaySinh", true);
             rdbNam.DataBindings.Add("checked", Bang_SINHVIEN, "GioiTinh", true);
-           
             cbbLop.DataBindings.Add("SelectedValue", Bang_SINHVIEN, "MaLop", true);
             txtDiachi.DataBindings.Add("text", Bang_SINHVIEN, "DiaChi", true);
             pHinh.DataBindings.Add("ImageLocation", Bang_SINHVIEN, "Hinh", true);
@@ -170,6 +169,19 @@ namespace DemoQLSV
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnTim_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow dr = Bang_SINHVIEN.Select("MaSv = '" + txtTim.Text + "'")[0];
+                DSSV.Position = Bang_SINHVIEN.Rows.IndexOf(dr);
+            }
+            catch
+            {
+                MessageBox.Show("Không tìm thấy");
+            }
         }
 
 
